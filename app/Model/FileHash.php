@@ -13,9 +13,9 @@ namespace App\Model;
 
 /**
  * @property int $id
- * @property int $file_id
- * @property string $hash
- * @property string $url
+ * @property int $file_id 文件ID
+ * @property string $hash 文件HASH
+ * @property string $url 云服务URL
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */

@@ -13,12 +13,12 @@ namespace App\Model;
 
 /**
  * @property int $id
- * @property string $path
- * @property string $hash
- * @property string $title
- * @property string $summary
- * @property int $version
- * @property string $url
+ * @property string $path 文件路径
+ * @property string $hash 文件HASH
+ * @property string $title 文件名
+ * @property string $summary 文件描述
+ * @property int $version 文件版本号
+ * @property string $url 云服务URL
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
