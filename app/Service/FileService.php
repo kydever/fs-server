@@ -37,7 +37,7 @@ class FileService extends Service
         $file->moveTo($target);
 
         $hash = hash_file('md5', $target);
-        
+
         return false;
     }
 }
