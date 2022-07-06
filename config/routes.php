@@ -16,3 +16,5 @@ Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController::
 Router::get('/oauth/authorize', [App\Controller\OAuthController::class, 'authorize']);
 Router::get('/oauth/login', [App\Controller\OAuthController::class, 'login']);
 Router::post('/oauth/login', [App\Controller\OAuthController::class, 'login']);
+
+Router::post('/file/{id:\d+}', [App\Controller\FileController::class, 'save']);
