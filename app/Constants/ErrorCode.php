@@ -28,6 +28,11 @@ class ErrorCode extends AbstractConstants
     public const TOKEN_INVALID = 700;
 
     /**
+     * @Message("Param Invalid.")
+     */
+    public const PARAM_INVALID = 1000;
+
+    /**
      * @Message("文件不存在.")
      */
     public const FILE_NOT_EXIST = 1001;

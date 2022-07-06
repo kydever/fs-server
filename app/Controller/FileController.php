@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use App\Request\DownloadUrlRequest;
 use App\Request\FileSaveRequest;
 use App\Service\FileService;
 use Hyperf\Di\Annotation\Inject;
@@ -40,5 +41,14 @@ class FileController extends Controller
         return $this->response->success([
             'saved' => $result,
         ]);
+    }
+
+    public function downloadUrl(DownloadUrlRequest $request)
+    {
+        $ids = (array) $request->input('ids');
+
+        $result = $this->service->downloadUrl($ids);
+
+        return $this->response->success($result);
     }
 }

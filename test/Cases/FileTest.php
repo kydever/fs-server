@@ -34,6 +34,18 @@ class FileTest extends HttpTestCase
         $this->assertSame(0, $res['code']);
     }
 
+    /**
+     * @depends testFileSave
+     */
+    public function testFileDownloadUrl()
+    {
+        $res = $this->get('/file/download-url', [
+            'ids' => [1],
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
+
     public function testFileSave()
     {
         /** @var ResponseInterface $response */

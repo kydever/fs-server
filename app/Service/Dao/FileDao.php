@@ -15,6 +15,7 @@ use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Model\File;
 use Han\Utils\Service;
+use Hyperf\Database\Model\Collection;
 
 class FileDao extends Service
 {
@@ -26,5 +27,13 @@ class FileDao extends Service
         }
 
         return $model;
+    }
+
+    /**
+     * @return Collection<int, File>
+     */
+    public function findMany(array $ids): Collection
+    {
+        return File::findManyFromCache($ids);
     }
 }

@@ -12,7 +12,9 @@ declare(strict_types=1);
 namespace App\Service\Formatter;
 
 use App\Model\File;
+use App\Service\SubService\UrlService;
 use Han\Utils\Service;
+use Hyperf\Database\Model\Collection;
 
 class FileFormatter extends Service
 {
@@ -29,5 +31,21 @@ class FileFormatter extends Service
             'created_at' => $model->created_at->toDateTimeString(),
             'updated_at' => $model->updated_at->toDateTimeString(),
         ];
+    }
+
+    /**
+     * @param Collection<int, File> $models
+     */
+    public function formatDownloadUrl(Collection $models): array
+    {
+        $result = [];
+        foreach ($models as $model) {
+            $result[] = [
+                'id' => $model->id,
+                'url' => di()->get(UrlService::class)->getUrl($model->url),
+            ];
+        }
+
+        return $result;
     }
 }

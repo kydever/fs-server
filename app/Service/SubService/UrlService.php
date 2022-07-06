@@ -19,6 +19,8 @@ class UrlService extends Service
     #[Value(key: 'file.default')]
     protected string $storage;
 
+    protected int $expiredSeconds = 3600;
+
     public function getUrl(string $url): string
     {
         return match ($this->storage) {
@@ -29,7 +31,7 @@ class UrlService extends Service
 
     public function signQiniu(string $url): string
     {
-        $url .= '?e=' . time();
+        $url .= '?e=' . time() + $this->expiredSeconds;
         $secret = config('file.storage.qiniu.secretKey');
         $hmac = hash_hmac('sha1', $url, $secret, true);
         $base64 = \Qiniu\base64_urlSafeEncode($hmac);

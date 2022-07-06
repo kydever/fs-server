@@ -79,4 +79,15 @@ class FileService extends Service
 
         return $this->formatter->base($model);
     }
+
+    public function downloadUrl(array $ids): array
+    {
+        if (! $ids) {
+            return [];
+        }
+
+        $models = $this->dao->findMany($ids);
+
+        return $this->formatter->formatDownloadUrl($models);
+    }
 }
