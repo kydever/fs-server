@@ -27,6 +27,18 @@ class FileTest extends HttpTestCase
     /**
      * @depends testFileSave
      */
+    public function testFileIndex()
+    {
+        $res = $this->get('/file', [
+            'dirname' => '/',
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
+
+    /**
+     * @depends testFileSave
+     */
     public function testFileInfo()
     {
         $res = $this->get('/file/1');

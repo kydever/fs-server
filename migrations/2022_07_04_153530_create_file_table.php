@@ -36,6 +36,7 @@ class CreateFileTable extends Migration
             $table->dateTime('updated_at')->default('2022-01-01')->comment('更新时间');
 
             $table->index(['user_id'], 'INDEX_USER_ID');
+            $table->index(['dirname'], 'INDEX_DIRNAME');
             $table->unique(['path'], 'UNIQUE_PATH');
             $table->unique(['hash'], 'UNIQUE_HASH');
         });

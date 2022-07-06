@@ -22,6 +22,18 @@ class FileController extends Controller
     #[Inject]
     protected FileService $service;
 
+    public function index()
+    {
+        $dirname = $this->request->input('dirname');
+
+        [$count, $result] = $this->service->findByDirname($dirname);
+
+        return $this->response->success([
+            'count' => $count,
+            'list' => $result,
+        ]);
+    }
+
     public function save(int $id, FileSaveRequest $request)
     {
         $file = $request->file('file');

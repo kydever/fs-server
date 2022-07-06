@@ -28,9 +28,19 @@ class FileFormatter extends Service
             'summary' => $model->summary,
             'tags' => $model->tags,
             'version' => $model->version,
+            'is_dir' => $model->isDir(),
             'created_at' => $model->created_at->toDateTimeString(),
             'updated_at' => $model->updated_at->toDateTimeString(),
         ];
+    }
+
+    public function formatList($models)
+    {
+        $result = [];
+        foreach ($models as $model) {
+            $result[] = $this->base($model);
+        }
+        return $result;
     }
 
     /**

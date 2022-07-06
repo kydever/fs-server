@@ -43,6 +43,14 @@ class FileDao extends Service
         return File::findManyFromCache($ids);
     }
 
+    public function findByDirname(string $dirname)
+    {
+        $query = File::query()
+            ->where('dirname', $dirname);
+
+        return $this->factory->model->pagination($query, 0, 100);
+    }
+
     public function createDir(string $dirname): void
     {
         $dirs = explode('/', $dirname);

@@ -33,6 +33,15 @@ class FileService extends Service
     #[Inject]
     protected FileFormatter $formatter;
 
+    public function findByDirname(string $dirname)
+    {
+        [$count, $models] = $this->dao->findByDirname($dirname);
+
+        $result = $this->formatter->formatList($models);
+
+        return [$count, $result];
+    }
+
     /**
      * @param $data = [
      *     'path' => '/file/xxx.md',
