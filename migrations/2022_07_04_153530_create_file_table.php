@@ -28,7 +28,8 @@ class CreateFileTable extends Migration
             $table->string('summary', 256)->default('')->comment('文件描述');
             $table->unsignedInteger('version')->default(0)->comment('文件版本号');
             $table->string('url', 256)->default('')->comment('云服务URL');
-            $table->timestamps();
+            $table->dateTime('created_at')->default('2022-01-01')->comment('创建时间');
+            $table->dateTime('updated_at')->default('2022-01-01')->comment('更新时间');
 
             $table->unique(['path'], 'UNIQUE_PATH');
             $table->unique(['hash'], 'UNIQUE_HASH');

@@ -22,7 +22,8 @@ class CreateFileLogsTable extends Migration
     {
         Schema::create('file_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->dateTime('created_at')->default('2022-01-01')->comment('创建时间');
+            $table->dateTime('updated_at')->default('2022-01-01')->comment('更新时间');
         });
     }
 

@@ -32,7 +32,8 @@ class CreateUsersTable extends Migration
             $table->string('avatar', 256)->default('')->comment('头像');
             $table->unsignedTinyInteger('status')->default(1)->comment('状态');
             $table->unsignedTinyInteger('enable')->default(1)->comment('是否可用');
-            $table->timestamps();
+            $table->dateTime('created_at')->default('2022-01-01')->comment('创建时间');
+            $table->dateTime('updated_at')->default('2022-01-01')->comment('更新时间');
 
             $table->unique(['userid'], 'UNIQUE_USERID');
             $table->comment('用户表');

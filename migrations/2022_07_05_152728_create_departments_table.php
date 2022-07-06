@@ -24,7 +24,8 @@ class CreateDepartmentsTable extends Migration
             $table->unsignedInteger('id', false)->primary();
             $table->string('name', 64)->default('')->comment('部门名称');
             $table->unsignedInteger('parent_id')->default(0)->comment('父级部门ID');
-            $table->timestamps();
+            $table->dateTime('created_at')->default('2022-01-01')->comment('创建时间');
+            $table->dateTime('updated_at')->default('2022-01-01')->comment('更新时间');
 
             $table->index(['parent_id'], 'INDEX_PARENT_ID');
             $table->comment('部门表');

@@ -2456,16 +2456,16 @@
         },
         {
             "name": "kydev/work-wx-user",
-            "version": "dev-main",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kydever/work-wx-user.git",
-                "reference": "db2a1b139d361e3c94965e43f1c79e41acf2a58a"
+                "reference": "50abf8fdc39efb83051fe3b214eb0343814adada"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kydever/work-wx-user/zipball/db2a1b139d361e3c94965e43f1c79e41acf2a58a",
-                "reference": "db2a1b139d361e3c94965e43f1c79e41acf2a58a",
+                "url": "https://api.github.com/repos/kydever/work-wx-user/zipball/50abf8fdc39efb83051fe3b214eb0343814adada",
+                "reference": "50abf8fdc39efb83051fe3b214eb0343814adada",
                 "shasum": ""
             },
             "require": {
@@ -2474,6 +2474,7 @@
                 "hyperf/http-server": "3.0.*",
                 "hyperf/model-cache": "3.0.*",
                 "hyperf/redis": "3.0.*",
+                "hyperf/validation": "3.0.*",
                 "limingxinleo/easywechat-classmap": "^1.0",
                 "limingxinleo/hyperf-utils": "^3.3",
                 "php": ">=8.0",
@@ -2490,7 +2491,6 @@
             "suggest": {
                 "swow/swow": "Required to create swow components."
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2522,9 +2522,9 @@
             ],
             "support": {
                 "issues": "https://github.com/kydever/work-wx-user/issues",
-                "source": "https://github.com/kydever/work-wx-user/tree/main"
+                "source": "https://github.com/kydever/work-wx-user/tree/v0.1.1"
             },
-            "time": "2022-07-06T01:59:14+00:00"
+            "time": "2022-07-06T03:29:17+00:00"
         },
         {
             "name": "laminas/laminas-mime",
