@@ -11,16 +11,22 @@ declare(strict_types=1);
  */
 namespace App\Service;
 
+use App\Constants\ErrorCode;
+use App\Exception\BusinessException;
+use App\Model\File;
+use App\Service\Dao\FileDao;
 use App\Service\SubService\UploadService;
 use Han\Utils\Service;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpMessage\Upload\UploadedFile;
-use Hyperf\Utils\Filesystem\Filesystem;
 
 class FileService extends Service
 {
     #[Inject]
     protected UploadService $upload;
+
+    #[Inject]
+    protected FileDao $dao;
 
     /**
      * @param $data = [
@@ -29,22 +35,37 @@ class FileService extends Service
      *     'tags' => ['设计稿', '文档'],
      * ]
      */
-    public function save(int $id, int $userId, UploadedFile $file, array $data = []): bool
+    public function save(int $id, int $userId, ?UploadedFile $file = null, array $data = []): bool
     {
         $extension = pathinfo($data['path'])['extension'];
+        $title = pathinfo($data['path'])['filename'];
 
-        $dir = BASE_PATH . '/runtime/uploaded/';
+        $target = $this->upload->move($file, $extension);
+        if ($id > 0) {
+            $model = $this->dao->first($id, true);
+            ++$model->version;
+        } else {
+            $model = new File();
+            $model->user_id = $userId;
+            $model->version = 1;
+            if (! $target) {
+                throw new BusinessException(ErrorCode::FILE_NOT_EXIST);
+            }
+        }
 
-        di()->get(Filesystem::class)->makeDirectory($dir, recursive: true, force: true);
+        $model->summary = $data['summary'] ?? '';
+        $model->tags = $data['tags'] ?? [];
+        $model->path = $data['path'];
+        $model->title = $title;
 
-        $target = $dir . uniqid() . '.' . $extension;
+        if ($target) {
+            $hash = hash_file('md5', $target);
+            $url = $this->upload->upload($target, $extension);
 
-        $file->moveTo($target);
+            $model->hash = $hash;
+            $model->url = $url;
+        }
 
-        $hash = hash_file('md5', $target);
-
-        $url = $this->upload->upload($target, $extension);
-
-        return false;
+        return $model->save();
     }
 }

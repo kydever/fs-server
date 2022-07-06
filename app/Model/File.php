@@ -13,6 +13,7 @@ namespace App\Model;
 
 /**
  * @property int $id
+ * @property int $user_id 用户ID
  * @property string $path 文件路径
  * @property string $hash 文件HASH
  * @property string $title 文件名
@@ -33,10 +34,10 @@ class File extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected array $fillable = ['id', 'path', 'hash', 'title', 'summary', 'tags', 'version', 'url', 'created_at', 'updated_at'];
+    protected array $fillable = ['id', 'user_id', 'path', 'hash', 'title', 'summary', 'tags', 'version', 'url', 'created_at', 'updated_at'];
 
     /**
      * The attributes that should be cast to native types.
      */
-    protected array $casts = ['id' => 'integer', 'tags' => 'json', 'version' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected array $casts = ['id' => 'integer', 'tags' => 'json', 'version' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime', 'user_id' => 'integer'];
 }

@@ -26,4 +26,14 @@ class ErrorCode extends AbstractConstants
      * @Message("Token Invalid.")
      */
     public const TOKEN_INVALID = 700;
+
+    /**
+     * @Message("文件不存在.")
+     */
+    public const FILE_NOT_EXIST = 1001;
+
+    /**
+     * @Message("新建文件时，必须上传文件.")
+     */
+    public const FILE_MUST_EXIST = 1002;
 }

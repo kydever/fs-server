@@ -22,6 +22,7 @@ class CreateFileTable extends Migration
     {
         Schema::create('file', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->default(0)->comment('用户ID');
             $table->string('path', 256)->default('')->comment('文件路径');
             $table->string('hash', 64)->default('')->comment('文件HASH');
             $table->string('title', 32)->default('')->comment('文件名');
@@ -32,6 +33,7 @@ class CreateFileTable extends Migration
             $table->dateTime('created_at')->default('2022-01-01')->comment('创建时间');
             $table->dateTime('updated_at')->default('2022-01-01')->comment('更新时间');
 
+            $table->index(['user_id'], 'INDEX_USER_ID');
             $table->unique(['path'], 'UNIQUE_PATH');
             $table->unique(['hash'], 'UNIQUE_HASH');
         });

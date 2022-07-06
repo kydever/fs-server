@@ -12,13 +12,35 @@ declare(strict_types=1);
 namespace App\Service\SubService;
 
 use Han\Utils\Service;
+use Hyperf\Config\Annotation\Value;
 use Hyperf\Di\Annotation\Inject;
+use Hyperf\HttpMessage\Upload\UploadedFile;
 use League\Flysystem\Filesystem;
 
 class UploadService extends Service
 {
     #[Inject]
     protected Filesystem $filesystem;
+
+    #[Value(key: 'file.domain')]
+    protected string $domain;
+
+    public function move(?UploadedFile $file, string $extension): ?string
+    {
+        if (! $file) {
+            return null;
+        }
+
+        $dir = BASE_PATH . '/runtime/uploaded/';
+
+        @mkdir($dir, 0755, true);
+
+        $target = $dir . uniqid() . '.' . $extension;
+
+        $file->moveTo($target);
+
+        return $target;
+    }
 
     public function upload(string $file, string $extension): string
     {
@@ -30,6 +52,6 @@ class UploadService extends Service
             fclose($stream);
         }
 
-        return $path;
+        return trim($this->domain, '/') . '/' . $path;
     }
 }
