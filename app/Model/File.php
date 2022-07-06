@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 namespace App\Model;
 
+use App\Constants\Status;
 use App\Service\Dao\FileHashDao;
 use Hyperf\Database\Model\Events\Created;
 use Hyperf\Database\Model\Events\Saved;
@@ -25,6 +26,8 @@ use Hyperf\Database\Model\Events\Saved;
  * @property array $tags 标签
  * @property int $version 文件版本号
  * @property string $url 云服务URL
+ * @property int $is_dir 是否为文件夹
+ * @property string $dirname 文件夹名
  * @property \Carbon\Carbon $created_at 创建时间
  * @property \Carbon\Carbon $updated_at 更新时间
  */
@@ -38,22 +41,29 @@ class File extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected array $fillable = ['id', 'user_id', 'path', 'hash', 'title', 'summary', 'tags', 'version', 'url', 'created_at', 'updated_at'];
+    protected array $fillable = ['id', 'user_id', 'path', 'hash', 'title', 'summary', 'tags', 'version', 'url', 'is_dir', 'dirname', 'created_at', 'updated_at'];
 
     /**
      * The attributes that should be cast to native types.
      */
-    protected array $casts = ['id' => 'integer', 'tags' => 'json', 'version' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime', 'user_id' => 'integer'];
+    protected array $casts = ['id' => 'integer', 'tags' => 'json', 'version' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime', 'user_id' => 'integer', 'is_dir' => 'integer'];
 
     public function created(Created $event)
     {
-        di()->get(FileHashDao::class)->create($this);
+        if (! $this->isDir()) {
+            di()->get(FileHashDao::class)->create($this);
+        }
     }
 
     public function saved(Saved $event)
     {
-        if ($this->wasChanged('hash')) {
+        if (! $this->isDir() && $this->wasChanged('hash')) {
             di()->get(FileHashDao::class)->create($this);
         }
+    }
+
+    public function isDir(): bool
+    {
+        return $this->is_dir === Status::YES;
     }
 }

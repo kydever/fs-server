@@ -54,7 +54,7 @@ class FileTest extends HttpTestCase
                 UserAuth::AUTH_TOKEN => UserAuthMockery::mockToken(1),
             ],
             RequestOptions::FORM_PARAMS => [
-                'path' => '/markdown/README.md',
+                'path' => '/markdown/fs-server/README.md',
                 'tags' => [
                     'Markdown',
                 ],

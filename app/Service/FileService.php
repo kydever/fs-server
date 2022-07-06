@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Constants\ErrorCode;
+use App\Constants\Status;
 use App\Exception\BusinessException;
 use App\Model\File;
 use App\Service\Dao\FileDao;
@@ -41,8 +42,12 @@ class FileService extends Service
      */
     public function save(int $id, int $userId, ?UploadedFile $file = null, array $data = []): bool
     {
-        $extension = pathinfo($data['path'])['extension'];
-        $title = pathinfo($data['path'])['filename'];
+        $info = pathinfo($data['path']);
+        $extension = $info['extension'];
+        $title = $info['filename'];
+        $dirname = $info['dirname'];
+
+        $this->dao->createDir($dirname);
 
         $target = $this->upload->move($file, $extension);
         if ($id > 0) {
@@ -61,6 +66,8 @@ class FileService extends Service
         $model->tags = $data['tags'] ?? [];
         $model->path = $data['path'];
         $model->title = $title;
+        $model->dirname = $dirname;
+        $model->is_dir = Status::NO;
 
         if ($target) {
             $hash = hash_file('md5', $target);

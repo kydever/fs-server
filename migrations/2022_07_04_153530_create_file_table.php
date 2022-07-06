@@ -24,12 +24,14 @@ class CreateFileTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->default(0)->comment('用户ID');
             $table->string('path', 256)->default('')->comment('文件路径');
-            $table->string('hash', 64)->default('')->comment('文件HASH');
+            $table->string('hash', 64)->nullable()->comment('文件HASH');
             $table->string('title', 32)->default('')->comment('文件名');
             $table->string('summary', 256)->default('')->comment('文件描述');
             $table->json('tags')->comment('标签');
             $table->unsignedInteger('version')->default(0)->comment('文件版本号');
             $table->string('url', 256)->default('')->comment('云服务URL');
+            $table->unsignedTinyInteger('is_dir')->default(0)->comment('是否为文件夹');
+            $table->string('dirname', 256)->default('/')->comment('文件夹名');
             $table->dateTime('created_at')->default('2022-01-01')->comment('创建时间');
             $table->dateTime('updated_at')->default('2022-01-01')->comment('更新时间');
 

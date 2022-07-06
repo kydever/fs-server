@@ -29,7 +29,7 @@ class CreateFileHashTable extends Migration
             $table->dateTime('created_at')->default('2022-01-01')->comment('创建时间');
             $table->dateTime('updated_at')->default('2022-01-01')->comment('更新时间');
 
-            $table->unique(['hash'], 'UNIQUE_HASH');
+            $table->index(['hash'], 'INDEX_HASH');
         });
     }
 
