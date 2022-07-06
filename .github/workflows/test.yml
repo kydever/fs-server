@@ -15,6 +15,7 @@ jobs:
     env:
       SW_VERSION: ${{ matrix.swoole-version }}
       PHP_VERSION: ${{ matrix.php-version }}
+      FILE_STORAGE: local
     steps:
       - name: Checkout
         uses: actions/checkout@v2

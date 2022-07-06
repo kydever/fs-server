@@ -11,12 +11,17 @@ declare(strict_types=1);
  */
 namespace App\Service;
 
+use App\Service\SubService\UploadService;
 use Han\Utils\Service;
+use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpMessage\Upload\UploadedFile;
 use Hyperf\Utils\Filesystem\Filesystem;
 
 class FileService extends Service
 {
+    #[Inject]
+    protected UploadService $upload;
+
     /**
      * @param $data = [
      *     'path' => '/file/xxx.md',
@@ -26,17 +31,19 @@ class FileService extends Service
      */
     public function save(int $id, int $userId, UploadedFile $file, array $data = []): bool
     {
-        $info = pathinfo($data['path']);
+        $extension = pathinfo($data['path'])['extension'];
 
         $dir = BASE_PATH . '/runtime/uploaded/';
 
         di()->get(Filesystem::class)->makeDirectory($dir, recursive: true, force: true);
 
-        $target = $dir . uniqid() . '.' . $info['extension'];
+        $target = $dir . uniqid() . '.' . $extension;
 
         $file->moveTo($target);
 
         $hash = hash_file('md5', $target);
+
+        $url = $this->upload->upload($target, $extension);
 
         return false;
     }
