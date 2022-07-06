@@ -16,8 +16,8 @@ namespace App\Model;
  * @property int $file_id 文件ID
  * @property string $hash 文件HASH
  * @property string $url 云服务URL
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $created_at 创建时间
+ * @property \Carbon\Carbon $updated_at 更新时间
  */
 class FileHash extends Model
 {

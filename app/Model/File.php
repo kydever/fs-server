@@ -17,10 +17,11 @@ namespace App\Model;
  * @property string $hash 文件HASH
  * @property string $title 文件名
  * @property string $summary 文件描述
+ * @property array $tags 标签
  * @property int $version 文件版本号
  * @property string $url 云服务URL
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $created_at 创建时间
+ * @property \Carbon\Carbon $updated_at 更新时间
  */
 class File extends Model
 {
@@ -32,10 +33,10 @@ class File extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected array $fillable = ['id', 'path', 'hash', 'title', 'summary', 'version', 'url', 'created_at', 'updated_at'];
+    protected array $fillable = ['id', 'path', 'hash', 'title', 'summary', 'tags', 'version', 'url', 'created_at', 'updated_at'];
 
     /**
      * The attributes that should be cast to native types.
      */
-    protected array $casts = ['id' => 'integer', 'version' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected array $casts = ['id' => 'integer', 'tags' => 'json', 'version' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 }

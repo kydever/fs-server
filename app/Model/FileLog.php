@@ -13,8 +13,8 @@ namespace App\Model;
 
 /**
  * @property int $id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $created_at 创建时间
+ * @property \Carbon\Carbon $updated_at 更新时间
  */
 class FileLog extends Model
 {
