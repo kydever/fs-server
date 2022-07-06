@@ -25,6 +25,7 @@ class CreateFileHashTable extends Migration
             $table->unsignedBigInteger('file_id')->default(0)->comment('文件ID');
             $table->string('hash')->default('')->comment('文件HASH');
             $table->string('url', 256)->default('')->comment('云服务URL');
+            $table->unsignedInteger('version')->default(0)->comment('版本号');
             $table->dateTime('created_at')->default('2022-01-01')->comment('创建时间');
             $table->dateTime('updated_at')->default('2022-01-01')->comment('更新时间');
 

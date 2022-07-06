@@ -16,6 +16,7 @@ namespace App\Model;
  * @property int $file_id 文件ID
  * @property string $hash 文件HASH
  * @property string $url 云服务URL
+ * @property int $version 版本号
  * @property \Carbon\Carbon $created_at 创建时间
  * @property \Carbon\Carbon $updated_at 更新时间
  */
@@ -29,10 +30,10 @@ class FileHash extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected array $fillable = ['id', 'file_id', 'hash', 'url', 'created_at', 'updated_at'];
+    protected array $fillable = ['id', 'file_id', 'hash', 'url', 'version', 'created_at', 'updated_at'];
 
     /**
      * The attributes that should be cast to native types.
      */
-    protected array $casts = ['id' => 'integer', 'file_id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected array $casts = ['id' => 'integer', 'file_id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime', 'version' => 'integer'];
 }

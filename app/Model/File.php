@@ -11,6 +11,10 @@ declare(strict_types=1);
  */
 namespace App\Model;
 
+use App\Service\Dao\FileHashDao;
+use Hyperf\Database\Model\Events\Created;
+use Hyperf\Database\Model\Events\Saved;
+
 /**
  * @property int $id
  * @property int $user_id 用户ID
@@ -40,4 +44,16 @@ class File extends Model
      * The attributes that should be cast to native types.
      */
     protected array $casts = ['id' => 'integer', 'tags' => 'json', 'version' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime', 'user_id' => 'integer'];
+
+    public function created(Created $event)
+    {
+        di()->get(FileHashDao::class)->create($this);
+    }
+
+    public function saved(Saved $event)
+    {
+        if ($this->wasChanged('hash')) {
+            di()->get(FileHashDao::class)->create($this);
+        }
+    }
 }
