@@ -43,7 +43,7 @@
         "hyperf/server": "3.0.*",
         "hyperf/utils": "3.0.*",
         "hyperf/validation": "3.0.*",
-        "kydev/work-wx-user": "^0.1",
+        "kydev/work-wx-user": "0.1.x-dev",
         "limingxinleo/hyperf-utils": "^3.3"
     },
     "require-dev": {
