@@ -15,6 +15,7 @@ use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Model\File;
 use App\Service\Dao\FileDao;
+use App\Service\Formatter\FileFormatter;
 use App\Service\SubService\UploadService;
 use Han\Utils\Service;
 use Hyperf\Di\Annotation\Inject;
@@ -27,6 +28,9 @@ class FileService extends Service
 
     #[Inject]
     protected FileDao $dao;
+
+    #[Inject]
+    protected FileFormatter $formatter;
 
     /**
      * @param $data = [
@@ -46,13 +50,13 @@ class FileService extends Service
             ++$model->version;
         } else {
             $model = new File();
-            $model->user_id = $userId;
             $model->version = 1;
             if (! $target) {
                 throw new BusinessException(ErrorCode::FILE_NOT_EXIST);
             }
         }
 
+        $model->user_id = $userId;
         $model->summary = $data['summary'] ?? '';
         $model->tags = $data['tags'] ?? [];
         $model->path = $data['path'];
@@ -67,5 +71,12 @@ class FileService extends Service
         }
 
         return $model->save();
+    }
+
+    public function info(int $id): array
+    {
+        $model = $this->dao->first($id, true);
+
+        return $this->formatter->base($model);
     }
 }

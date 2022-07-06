@@ -18,3 +18,4 @@ Router::get('/oauth/login', [App\Controller\OAuthController::class, 'login']);
 Router::post('/oauth/login', [App\Controller\OAuthController::class, 'login']);
 
 Router::post('/file/{id:\d+}', [App\Controller\FileController::class, 'save']);
+Router::get('/file/{id:\d+}', [App\Controller\FileController::class, 'info']);

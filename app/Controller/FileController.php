@@ -32,4 +32,13 @@ class FileController extends Controller
             'saved' => $result,
         ]);
     }
+
+    public function info(int $id)
+    {
+        $result = $this->service->info($id);
+
+        return $this->response->success([
+            'saved' => $result,
+        ]);
+    }
 }

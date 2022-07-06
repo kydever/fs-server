@@ -24,6 +24,16 @@ use Psr\Http\Message\ResponseInterface;
  */
 class FileTest extends HttpTestCase
 {
+    /**
+     * @depends testFileSave
+     */
+    public function testFileInfo()
+    {
+        $res = $this->get('/file/1');
+
+        $this->assertSame(0, $res['code']);
+    }
+
     public function testFileSave()
     {
         /** @var ResponseInterface $response */
