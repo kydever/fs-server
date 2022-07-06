@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ead49d514131ddb949cc779edd89a4bf",
+    "content-hash": "36321928852fa15cf71a94edbc277144",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -166,6 +166,150 @@
                 }
             ],
             "time": "2022-03-03T08:28:38+00:00"
+        },
+        {
+            "name": "doctrine/lexer",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/lexer.git",
+                "reference": "c268e882d4dbdd85e36e4ad69e02dc284f89d229"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/lexer/zipball/c268e882d4dbdd85e36e4ad69e02dc284f89d229",
+                "reference": "c268e882d4dbdd85e36e4ad69e02dc284f89d229",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^9.0",
+                "phpstan/phpstan": "^1.3",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "vimeo/psalm": "^4.11"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\Lexer\\": "lib/Doctrine/Common/Lexer"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "PHP Doctrine Lexer parser library that can be used in Top-Down, Recursive Descent Parsers.",
+            "homepage": "https://www.doctrine-project.org/projects/lexer.html",
+            "keywords": [
+                "annotations",
+                "docblock",
+                "lexer",
+                "parser",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/lexer/issues",
+                "source": "https://github.com/doctrine/lexer/tree/1.2.3"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Flexer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-02-28T11:07:21+00:00"
+        },
+        {
+            "name": "egulias/email-validator",
+            "version": "3.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/egulias/EmailValidator.git",
+                "reference": "f88dcf4b14af14a98ad96b14b2b317969eab6715"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/f88dcf4b14af14a98ad96b14b2b317969eab6715",
+                "reference": "f88dcf4b14af14a98ad96b14b2b317969eab6715",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/lexer": "^1.2",
+                "php": ">=7.2",
+                "symfony/polyfill-intl-idn": "^1.15"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpunit/phpunit": "^8.5.8|^9.3.3",
+                "vimeo/psalm": "^4"
+            },
+            "suggest": {
+                "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Egulias\\EmailValidator\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eduardo Gulias Davis"
+                }
+            ],
+            "description": "A library for validating emails against several RFCs",
+            "homepage": "https://github.com/egulias/EmailValidator",
+            "keywords": [
+                "email",
+                "emailvalidation",
+                "emailvalidator",
+                "validation",
+                "validator"
+            ],
+            "support": {
+                "issues": "https://github.com/egulias/EmailValidator/issues",
+                "source": "https://github.com/egulias/EmailValidator/tree/3.2.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/egulias",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-06-18T20:57:19+00:00"
         },
         {
             "name": "fig/http-message-util",
@@ -2131,6 +2275,59 @@
             "time": "2022-06-23T09:40:15+00:00"
         },
         {
+            "name": "hyperf/translation",
+            "version": "v3.0.0-beta.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hyperf/translation.git",
+                "reference": "02891d7b70f87aebfcee7261e28231c870421cb4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hyperf/translation/zipball/02891d7b70f87aebfcee7261e28231c870421cb4",
+                "reference": "02891d7b70f87aebfcee7261e28231c870421cb4",
+                "shasum": ""
+            },
+            "require": {
+                "hyperf/contract": "~3.0.0",
+                "hyperf/macroable": "~3.0.0",
+                "hyperf/utils": "~3.0.0",
+                "php": ">=8.0",
+                "psr/container": "^1.0|^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                },
+                "hyperf": {
+                    "config": "Hyperf\\Translation\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Functions.php"
+                ],
+                "psr-4": {
+                    "Hyperf\\Translation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "An independent translation component, forked by illuminate/translation.",
+            "keywords": [
+                "hyperf",
+                "translation"
+            ],
+            "support": {
+                "issues": "https://github.com/hyperf/translation/issues",
+                "source": "https://github.com/hyperf/translation/tree/v3.0.0-beta.1"
+            },
+            "time": "2022-05-30T02:16:40+00:00"
+        },
+        {
             "name": "hyperf/utils",
             "version": "v3.0.0-beta.8",
             "source": {
@@ -2199,17 +2396,76 @@
             "time": "2022-06-30T01:58:36+00:00"
         },
         {
+            "name": "hyperf/validation",
+            "version": "v3.0.0-beta.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hyperf/validation.git",
+                "reference": "114ac67fc14fff5cc32b705c88ae76aa77042919"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hyperf/validation/zipball/114ac67fc14fff5cc32b705c88ae76aa77042919",
+                "reference": "114ac67fc14fff5cc32b705c88ae76aa77042919",
+                "shasum": ""
+            },
+            "require": {
+                "egulias/email-validator": "^3.0",
+                "hyperf/contract": "~3.0.0",
+                "hyperf/database": "~3.0.0",
+                "hyperf/di": "~3.0.0",
+                "hyperf/framework": "~3.0.0",
+                "hyperf/http-server": "~3.0.0",
+                "hyperf/macroable": "~3.0.0",
+                "hyperf/translation": "~3.0.0",
+                "hyperf/utils": "~3.0.0",
+                "nesbot/carbon": "^2.21",
+                "php": ">=8.0",
+                "psr/container": "^1.0|^2.0",
+                "psr/event-dispatcher": "^1.0",
+                "psr/http-message": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                },
+                "hyperf": {
+                    "config": "Hyperf\\Validation\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hyperf\\Validation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "hyperf validation",
+            "keywords": [
+                "hyperf",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/hyperf/validation/issues",
+                "source": "https://github.com/hyperf/validation/tree/v3.0.0-beta.6"
+            },
+            "time": "2022-06-23T03:06:05+00:00"
+        },
+        {
             "name": "kydev/work-wx-user",
             "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kydever/work-wx-user.git",
-                "reference": "b9522a0be34e8cddec7a516f13bb553bc17d9695"
+                "reference": "db2a1b139d361e3c94965e43f1c79e41acf2a58a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kydever/work-wx-user/zipball/b9522a0be34e8cddec7a516f13bb553bc17d9695",
-                "reference": "b9522a0be34e8cddec7a516f13bb553bc17d9695",
+                "url": "https://api.github.com/repos/kydever/work-wx-user/zipball/db2a1b139d361e3c94965e43f1c79e41acf2a58a",
+                "reference": "db2a1b139d361e3c94965e43f1c79e41acf2a58a",
                 "shasum": ""
             },
             "require": {
@@ -2268,7 +2524,7 @@
                 "issues": "https://github.com/kydever/work-wx-user/issues",
                 "source": "https://github.com/kydever/work-wx-user/tree/main"
             },
-            "time": "2022-07-05T08:25:52+00:00"
+            "time": "2022-07-06T01:59:14+00:00"
         },
         {
             "name": "laminas/laminas-mime",
@@ -6115,82 +6371,6 @@
                 "source": "https://github.com/doctrine/annotations/tree/1.13.3"
             },
             "time": "2022-07-02T10:48:51+00:00"
-        },
-        {
-            "name": "doctrine/lexer",
-            "version": "1.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/lexer.git",
-                "reference": "c268e882d4dbdd85e36e4ad69e02dc284f89d229"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/lexer/zipball/c268e882d4dbdd85e36e4ad69e02dc284f89d229",
-                "reference": "c268e882d4dbdd85e36e4ad69e02dc284f89d229",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1 || ^8.0"
-            },
-            "require-dev": {
-                "doctrine/coding-standard": "^9.0",
-                "phpstan/phpstan": "^1.3",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
-                "vimeo/psalm": "^4.11"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Doctrine\\Common\\Lexer\\": "lib/Doctrine/Common/Lexer"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com"
-                },
-                {
-                    "name": "Roman Borschel",
-                    "email": "roman@code-factory.org"
-                },
-                {
-                    "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com"
-                }
-            ],
-            "description": "PHP Doctrine Lexer parser library that can be used in Top-Down, Recursive Descent Parsers.",
-            "homepage": "https://www.doctrine-project.org/projects/lexer.html",
-            "keywords": [
-                "annotations",
-                "docblock",
-                "lexer",
-                "parser",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/doctrine/lexer/issues",
-                "source": "https://github.com/doctrine/lexer/tree/1.2.3"
-            },
-            "funding": [
-                {
-                    "url": "https://www.doctrine-project.org/sponsorship.html",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.patreon.com/phpdoctrine",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Flexer",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-02-28T11:07:21+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",

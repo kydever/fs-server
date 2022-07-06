@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
             $table->unique(['userid'], 'UNIQUE_USERID');
+            $table->comment('用户表');
         });
     }
 

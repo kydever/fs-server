@@ -10,8 +10,12 @@ declare(strict_types=1);
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
 return [
-    'http' => [
-        Han\Utils\Middleware\RequestHandledDebugMiddleware::class,
-        KY\WorkWxUser\Middleware\UserAuthMiddleware::class,
+    'corp_id' => env('WORK_WX_CORP_ID'),
+    'agent_id' => (int) env('WORK_WX_AGENT_ID'),
+    'secret' => env('WORK_WX_SECRET'),
+    'token' => env('WORK_WX_TOKEN'),
+    'aes_key' => env('WORK_WX_AES_KEY'),
+    'oauth' => [
+        'redirect_url' => '',
     ],
 ];

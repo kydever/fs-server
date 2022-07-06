@@ -18,6 +18,7 @@ use Hyperf\Contract\StdoutLoggerInterface;
 use Hyperf\Di\Exception\CircularDependencyException;
 use Hyperf\ExceptionHandler\ExceptionHandler;
 use Hyperf\HttpMessage\Exception\HttpException;
+use KY\WorkWxUser\Exception\TokenInvalidException;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
@@ -40,6 +41,8 @@ class BusinessExceptionHandler extends ExceptionHandler
         switch (true) {
             case $throwable instanceof HttpException:
                 return $this->response->handleException($throwable);
+            case $throwable instanceof TokenInvalidException:
+                return $this->response->fail(ErrorCode::TOKEN_INVALID, 'Token Invalid.');
             case $throwable instanceof BusinessException:
                 $this->logger->warning(format_throwable($throwable));
                 return $this->response->fail($throwable->getCode(), $throwable->getMessage());
