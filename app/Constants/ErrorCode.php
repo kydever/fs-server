@@ -28,6 +28,11 @@ class ErrorCode extends AbstractConstants
     public const TOKEN_INVALID = 700;
 
     /**
+     * @Message("用户账号非法")
+     */
+    public const USER_NOT_ENABLE = 701;
+
+    /**
      * @Message("Param Invalid.")
      */
     public const PARAM_INVALID = 1000;

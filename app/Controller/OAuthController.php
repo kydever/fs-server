@@ -11,6 +11,9 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use App\Constants\ErrorCode;
+use App\Constants\Status;
+use App\Exception\BusinessException;
 use Hyperf\Di\Annotation\Inject;
 use KY\WorkWxUser\Request\AuthorizeRequest;
 use KY\WorkWxUser\UserService;
@@ -40,9 +43,14 @@ class OAuthController extends Controller
 
         $result = $this->service->login($code);
 
+        $user = $result->getUser();
+        if ($user->status !== Status::YES || $user->enable !== Status::YES) {
+            throw new BusinessException(ErrorCode::USER_NOT_ENABLE);
+        }
+
         return $this->response->success([
             'token' => $result->getToken(),
-            'user' => $result->getUser()->toArray(),
+            'user' => $user->toArray(),
         ]);
     }
 }
