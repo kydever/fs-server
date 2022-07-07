@@ -51,7 +51,7 @@ class FileTest extends HttpTestCase
      */
     public function testFileDownloadUrl()
     {
-        $res = $this->get('/file/download-url', [
+        $res = $this->json('/file/download-url', [
             'ids' => [1],
         ]);
 

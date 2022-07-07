@@ -61,6 +61,8 @@ class FileController extends Controller
 
         $result = $this->service->downloadUrl($ids);
 
-        return $this->response->success($result);
+        return $this->response->success([
+            'list' => $result,
+        ]);
     }
 }

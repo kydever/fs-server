@@ -21,7 +21,7 @@ class FileFormatter extends Service
     public function base(File $model)
     {
         return [
-            'id' => $model,
+            'id' => $model->id,
             'user_id' => $model->user_id,
             'path' => $model->path,
             'title' => $model->title,
