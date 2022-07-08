@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "571b5c5503afff27e2b8442f5a0f646f",
+    "content-hash": "5493dc5801fe586447b9509538333b1c",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -1188,16 +1188,16 @@
         },
         {
             "name": "hyperf/database",
-            "version": "v3.0.0-beta.6",
+            "version": "v3.0.0-beta.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hyperf/database.git",
-                "reference": "32c97c987193e46622b3cbed949bf93200e22c32"
+                "reference": "30b37b1e156aa7e1079a1a44971d90b2691fe9b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hyperf/database/zipball/32c97c987193e46622b3cbed949bf93200e22c32",
-                "reference": "32c97c987193e46622b3cbed949bf93200e22c32",
+                "url": "https://api.github.com/repos/hyperf/database/zipball/30b37b1e156aa7e1079a1a44971d90b2691fe9b3",
+                "reference": "30b37b1e156aa7e1079a1a44971d90b2691fe9b3",
                 "shasum": ""
             },
             "require": {
@@ -1241,20 +1241,20 @@
                 "pull-request": "https://github.com/hyperf/hyperf/pulls",
                 "source": "https://github.com/hyperf/hyperf"
             },
-            "time": "2022-06-24T07:54:39+00:00"
+            "time": "2022-07-08T03:16:41+00:00"
         },
         {
             "name": "hyperf/db-connection",
-            "version": "v3.0.0-beta.1",
+            "version": "v3.0.0-beta.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hyperf/db-connection.git",
-                "reference": "97405b9e00704b93492256811a4631d543ce3914"
+                "reference": "ed672a64cccfb7e449938a854fd9d764803cec21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hyperf/db-connection/zipball/97405b9e00704b93492256811a4631d543ce3914",
-                "reference": "97405b9e00704b93492256811a4631d543ce3914",
+                "url": "https://api.github.com/repos/hyperf/db-connection/zipball/ed672a64cccfb7e449938a854fd9d764803cec21",
+                "reference": "ed672a64cccfb7e449938a854fd9d764803cec21",
                 "shasum": ""
             },
             "require": {
@@ -1298,7 +1298,7 @@
                 "pull-request": "https://github.com/hyperf/hyperf/pulls",
                 "source": "https://github.com/hyperf/hyperf"
             },
-            "time": "2022-05-30T02:16:40+00:00"
+            "time": "2022-07-08T03:16:41+00:00"
         },
         {
             "name": "hyperf/di",
@@ -1584,16 +1584,16 @@
         },
         {
             "name": "hyperf/filesystem",
-            "version": "dev-master",
+            "version": "v3.0.0-beta.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hyperf/filesystem.git",
-                "reference": "06642c0a3433d96ac6dc484fd94a901ed51bc49e"
+                "reference": "cfd69351a53f3d864af4b9a675c13c2122c7d176"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hyperf/filesystem/zipball/06642c0a3433d96ac6dc484fd94a901ed51bc49e",
-                "reference": "06642c0a3433d96ac6dc484fd94a901ed51bc49e",
+                "url": "https://api.github.com/repos/hyperf/filesystem/zipball/cfd69351a53f3d864af4b9a675c13c2122c7d176",
+                "reference": "cfd69351a53f3d864af4b9a675c13c2122c7d176",
                 "shasum": ""
             },
             "require": {
@@ -1610,7 +1610,6 @@
                 "overtrue/flysystem-qiniu": "Required to use qiniu adapter (^1.0|^2.0)",
                 "xxtime/flysystem-aliyun-oss": "Required to use aliyun oss adapter when use `league/flysystem` v1.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1636,9 +1635,9 @@
             ],
             "support": {
                 "issues": "https://github.com/hyperf/filesystem/issues",
-                "source": "https://github.com/hyperf/filesystem/tree/master"
+                "source": "https://github.com/hyperf/filesystem/tree/v3.0.0-beta.9"
             },
-            "time": "2022-07-06T06:32:28+00:00"
+            "time": "2022-07-07T01:16:20+00:00"
         },
         {
             "name": "hyperf/framework",
@@ -2581,7 +2580,7 @@
             ],
             "support": {
                 "issues": "https://github.com/kydever/work-wx-user/issues",
-                "source": "https://github.com/kydever/work-wx-user/tree/main"
+                "source": "https://github.com/kydever/work-wx-user/tree/v0.1.2"
             },
             "time": "2022-07-06T04:15:14+00:00"
         },
@@ -3548,16 +3547,16 @@
         },
         {
             "name": "overtrue/socialite",
-            "version": "4.3.0",
+            "version": "4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/socialite.git",
-                "reference": "d25d62d87b61c570f59d3f653dc3c46dcc5593d3"
+                "reference": "be554a1798c8f42de1c1e716c6a32460b9134d1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/socialite/zipball/d25d62d87b61c570f59d3f653dc3c46dcc5593d3",
-                "reference": "d25d62d87b61c570f59d3f653dc3c46dcc5593d3",
+                "url": "https://api.github.com/repos/overtrue/socialite/zipball/be554a1798c8f42de1c1e716c6a32460b9134d1b",
+                "reference": "be554a1798c8f42de1c1e716c6a32460b9134d1b",
                 "shasum": ""
             },
             "require": {
@@ -3604,7 +3603,7 @@
             ],
             "support": {
                 "issues": "https://github.com/overtrue/socialite/issues",
-                "source": "https://github.com/overtrue/socialite/tree/4.3.0"
+                "source": "https://github.com/overtrue/socialite/tree/4.4.0"
             },
             "funding": [
                 {
@@ -3612,7 +3611,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-06-27T15:45:31+00:00"
+            "time": "2022-07-07T16:21:16+00:00"
         },
         {
             "name": "php-di/phpdoc-reader",
@@ -9527,7 +9526,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "hyperf/filesystem": 20,
         "kydev/work-wx-user": 20,
         "swoole/ide-helper": 20
     },
