@@ -31,7 +31,6 @@ class FileSaveRequest extends FormRequest
         return [
             'path' => 'required|string',
             'summary' => 'string',
-            'tags' => 'array',
         ];
     }
 }

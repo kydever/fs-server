@@ -38,8 +38,14 @@ class FileController extends Controller
     {
         $file = $request->file('file');
         $userId = get_user_id();
+        $input = $request->all();
+        if (isset($input['tags'])) {
+            if (! is_array($input['tags'])) {
+                $input['tags'] = explode(',', (string) $input['tags']);
+            }
+        }
 
-        $result = $this->service->save($id, $userId, $file, $request->all());
+        $result = $this->service->save($id, $userId, $file, $input);
 
         return $this->response->success([
             'saved' => $result,
