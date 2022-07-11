@@ -50,14 +50,14 @@ class File extends Model
 
     public function created(Created $event)
     {
-        if (! $this->isDir()) {
+        if (! $this->isDir() && $this->hash) {
             di()->get(FileHashDao::class)->create($this);
         }
     }
 
     public function saved(Saved $event)
     {
-        if (! $this->isDir() && $this->wasChanged('hash')) {
+        if (! $this->isDir() && $this->hash && $this->wasChanged('hash')) {
             di()->get(FileHashDao::class)->create($this);
         }
     }
