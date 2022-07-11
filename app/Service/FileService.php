@@ -11,9 +11,7 @@ declare(strict_types=1);
  */
 namespace App\Service;
 
-use App\Constants\ErrorCode;
 use App\Constants\Status;
-use App\Exception\BusinessException;
 use App\Model\File;
 use App\Service\Dao\FileDao;
 use App\Service\Formatter\FileFormatter;
@@ -59,15 +57,15 @@ class FileService extends Service
         $this->dao->createDir($dirname);
 
         $target = $this->upload->move($file, $extension);
+        if (! $target) {
+            return true;
+        }
         if ($id > 0) {
             $model = $this->dao->first($id, true);
             ++$model->version;
         } else {
             $model = new File();
             $model->version = 1;
-            if (! $target) {
-                throw new BusinessException(ErrorCode::FILE_NOT_EXIST);
-            }
         }
 
         $model->user_id = $userId;
@@ -76,13 +74,12 @@ class FileService extends Service
         $model->path = $data['path'];
         $model->title = $title;
         $model->dirname = $dirname;
-        $model->is_dir = Status::YES;
+        $model->is_dir = Status::NO;
 
         if ($target) {
             $hash = hash_file('md5', $target);
             $url = $this->upload->upload($target, $extension);
 
-            $model->is_dir = Status::NO;
             $model->hash = $hash;
             $model->url = $url;
         }
