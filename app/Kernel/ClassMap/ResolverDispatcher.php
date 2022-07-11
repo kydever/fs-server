@@ -75,12 +75,12 @@ class ResolverDispatcher implements ResolverInterface
                 if (! $this->objectResolver) {
                     $this->objectResolver = new ObjectResolver($this->container, $this);
                 }
-                return $this->objectResolver;
+            return $this->objectResolver;
             case $definition instanceof FactoryDefinition:
                 if (! $this->factoryResolver) {
                     $this->factoryResolver = new FactoryResolver($this->container, $this);
                 }
-                return $this->factoryResolver;
+            return $this->factoryResolver;
             default:
                 throw new RuntimeException('No definition resolver was configured for definition of type ' . get_class($definition));
         }
