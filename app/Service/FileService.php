@@ -52,7 +52,7 @@ class FileService extends Service
     public function save(int $id, int $userId, ?UploadedFile $file = null, array $data = []): bool
     {
         $info = pathinfo($data['path']);
-        $extension = $info['extension'];
+        $extension = $info['extension'] ?? null;
         $title = $info['filename'];
         $dirname = $info['dirname'];
 
