@@ -2272,16 +2272,16 @@
         },
         {
             "name": "hyperf/server",
-            "version": "v3.0.0-beta.6",
+            "version": "v3.0.0-beta.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hyperf/server.git",
-                "reference": "b4071f5d43e38f987fd3599acbb58012edd9a517"
+                "reference": "d49d80dace6a6ca66fad0830fdf8f42447e097d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hyperf/server/zipball/b4071f5d43e38f987fd3599acbb58012edd9a517",
-                "reference": "b4071f5d43e38f987fd3599acbb58012edd9a517",
+                "url": "https://api.github.com/repos/hyperf/server/zipball/d49d80dace6a6ca66fad0830fdf8f42447e097d5",
+                "reference": "d49d80dace6a6ca66fad0830fdf8f42447e097d5",
                 "shasum": ""
             },
             "require": {
@@ -2329,7 +2329,7 @@
                 "pull-request": "https://github.com/hyperf/hyperf/pulls",
                 "source": "https://github.com/hyperf/hyperf"
             },
-            "time": "2022-06-23T09:40:15+00:00"
+            "time": "2022-07-09T05:19:52+00:00"
         },
         {
             "name": "hyperf/translation",
@@ -3547,16 +3547,16 @@
         },
         {
             "name": "overtrue/socialite",
-            "version": "4.4.0",
+            "version": "4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/socialite.git",
-                "reference": "be554a1798c8f42de1c1e716c6a32460b9134d1b"
+                "reference": "7bbaabf4c29df3c71814f2cb3d2c2e8ab54515a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/socialite/zipball/be554a1798c8f42de1c1e716c6a32460b9134d1b",
-                "reference": "be554a1798c8f42de1c1e716c6a32460b9134d1b",
+                "url": "https://api.github.com/repos/overtrue/socialite/zipball/7bbaabf4c29df3c71814f2cb3d2c2e8ab54515a1",
+                "reference": "7bbaabf4c29df3c71814f2cb3d2c2e8ab54515a1",
                 "shasum": ""
             },
             "require": {
@@ -3603,7 +3603,7 @@
             ],
             "support": {
                 "issues": "https://github.com/overtrue/socialite/issues",
-                "source": "https://github.com/overtrue/socialite/tree/4.4.0"
+                "source": "https://github.com/overtrue/socialite/tree/4.5.0"
             },
             "funding": [
                 {
@@ -3611,7 +3611,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-07-07T16:21:16+00:00"
+            "time": "2022-07-08T14:28:06+00:00"
         },
         {
             "name": "php-di/phpdoc-reader",
@@ -8962,12 +8962,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swoole/ide-helper.git",
-                "reference": "566dfdeb75fe89c836d59c8e06ec9615c1318c08"
+                "reference": "edcf955501271b1fd5d77efef31027b1e08f4a85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swoole/ide-helper/zipball/566dfdeb75fe89c836d59c8e06ec9615c1318c08",
-                "reference": "566dfdeb75fe89c836d59c8e06ec9615c1318c08",
+                "url": "https://api.github.com/repos/swoole/ide-helper/zipball/edcf955501271b1fd5d77efef31027b1e08f4a85",
+                "reference": "edcf955501271b1fd5d77efef31027b1e08f4a85",
                 "shasum": ""
             },
             "default-branch": true,
@@ -8985,7 +8985,7 @@
             "description": "IDE help files for Swoole.",
             "support": {
                 "issues": "https://github.com/swoole/ide-helper/issues",
-                "source": "https://github.com/swoole/ide-helper/tree/4.8.10"
+                "source": "https://github.com/swoole/ide-helper/tree/4.8.11"
             },
             "funding": [
                 {
@@ -8997,7 +8997,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-05-13T22:24:54+00:00"
+            "time": "2022-07-09T06:20:31+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
