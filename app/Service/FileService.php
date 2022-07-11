@@ -76,12 +76,13 @@ class FileService extends Service
         $model->path = $data['path'];
         $model->title = $title;
         $model->dirname = $dirname;
-        $model->is_dir = Status::NO;
+        $model->is_dir = Status::YES;
 
         if ($target) {
             $hash = hash_file('md5', $target);
             $url = $this->upload->upload($target, $extension);
 
+            $model->is_dir = Status::NO;
             $model->hash = $hash;
             $model->url = $url;
         }
