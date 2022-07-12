@@ -46,4 +46,9 @@ class ErrorCode extends AbstractConstants
      * @Message("新建文件时，必须上传文件.")
      */
     public const FILE_MUST_EXIST = 1002;
+
+    /**
+     * @Message("文件路径已存在.")
+     */
+    public const PATH_IS_EXIST = 1003;
 }

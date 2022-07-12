@@ -30,6 +30,11 @@ class FileDao extends Service
         return $model;
     }
 
+    public function existsByPath(string $path): bool
+    {
+        return File::query()->where('path', $path)->exists();
+    }
+
     public function findByPaths(array $paths)
     {
         return File::query()->whereIn('path', $paths)->get();
@@ -51,7 +56,7 @@ class FileDao extends Service
         return $this->factory->model->pagination($query, 0, 100);
     }
 
-    public function createDir(string $dirname): void
+    public function createDir(string $dirname, int $userId): void
     {
         $dirs = explode('/', $dirname);
         $dir = '';
@@ -68,12 +73,15 @@ class FileDao extends Service
         $pathArray = $this->findByPaths($paths)->columns('path')->toArray();
         foreach ($paths as $path) {
             if (! in_array($path, $pathArray)) {
+                $info = pathinfo($path);
                 $model = new File();
                 $model->path = $path;
+                $model->user_id = $userId;
                 $model->is_dir = Status::YES;
                 $model->dirname = dirname($path);
                 $model->tags = [];
                 $model->hash = null;
+                $model->title = $info['filename'] ?? '';
                 $model->save();
             }
         }

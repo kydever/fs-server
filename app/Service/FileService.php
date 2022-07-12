@@ -11,7 +11,9 @@ declare(strict_types=1);
  */
 namespace App\Service;
 
+use App\Constants\ErrorCode;
 use App\Constants\Status;
+use App\Exception\BusinessException;
 use App\Model\File;
 use App\Service\Dao\FileDao;
 use App\Service\Formatter\FileFormatter;
@@ -49,26 +51,35 @@ class FileService extends Service
      */
     public function save(int $id, int $userId, ?UploadedFile $file = null, array $data = []): bool
     {
-        $info = pathinfo($data['path']);
-        $extension = $info['extension'] ?? null;
-        $title = $info['filename'];
-        $dirname = $info['dirname'];
-
-        $this->dao->createDir($dirname);
-
-        $target = $this->upload->move($file, $extension);
         if ($id > 0) {
             $model = $this->dao->first($id, true);
             ++$model->version;
+            if (! $model->isLegalOperation(! empty($file))) {
+                throw new BusinessException(ErrorCode::PARAM_INVALID);
+            }
         } else {
             $model = new File();
             $model->version = 1;
         }
 
+        $path = $data['path'];
+        if ($model->path != $path && $this->dao->existsByPath($path)) {
+            throw new BusinessException(ErrorCode::PATH_IS_EXIST);
+        }
+
+        $info = pathinfo($path);
+        $extension = $info['extension'] ?? null;
+        $title = $info['filename'];
+        $dirname = $info['dirname'];
+
+        $this->dao->createDir($dirname, $userId);
+
+        $target = $this->upload->move($file, $extension);
+
         $model->user_id = $userId;
         $model->summary = $data['summary'] ?? '';
         $model->tags = $data['tags'] ?? [];
-        $model->path = $data['path'];
+        $model->path = $path;
         $model->title = $title;
         $model->dirname = $dirname;
         $model->is_dir = Status::YES;
