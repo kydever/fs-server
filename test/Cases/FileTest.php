@@ -72,7 +72,7 @@ class FileTest extends HttpTestCase
     public function testFileSave()
     {
         /** @var ResponseInterface $response */
-        $response = $this->client->request('POST', '/file/0', [
+        $response = $this->client->request('POST', '/file/34', [
             RequestOptions::HEADERS => [
                 UserAuth::AUTH_TOKEN => UserAuthMockery::mockToken(1),
             ],

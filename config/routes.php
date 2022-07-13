@@ -17,7 +17,7 @@ Router::get('/oauth/authorize', [App\Controller\OAuthController::class, 'authori
 Router::get('/oauth/login', [App\Controller\OAuthController::class, 'login']);
 Router::post('/oauth/login', [App\Controller\OAuthController::class, 'login']);
 
-Router::post('/file/{id:\d+}', [App\Controller\FileController::class, 'save']);
+Router::post('/file/{id:\d+}', [App\Controller\FileController::class, 'saveFile']);
 Router::get('/file/{id:\d+}', [App\Controller\FileController::class, 'info']);
 Router::post('/file/download-url', [App\Controller\FileController::class, 'downloadUrl']);
 Router::get('/file', [App\Controller\FileController::class, 'index']);
