@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5493dc5801fe586447b9509538333b1c",
+    "content-hash": "f1bfa5c71c10e6dfa9dcf69e685d8883",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -2513,16 +2513,16 @@
         },
         {
             "name": "kydev/work-wx-user",
-            "version": "dev-main",
+            "version": "v0.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kydever/work-wx-user.git",
-                "reference": "a4eefbc29d851cc3aeccc6ca309e278707457441"
+                "reference": "02d9c5d4182fb76dcbac4c58bbcf86c61be3a830"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kydever/work-wx-user/zipball/a4eefbc29d851cc3aeccc6ca309e278707457441",
-                "reference": "a4eefbc29d851cc3aeccc6ca309e278707457441",
+                "url": "https://api.github.com/repos/kydever/work-wx-user/zipball/02d9c5d4182fb76dcbac4c58bbcf86c61be3a830",
+                "reference": "02d9c5d4182fb76dcbac4c58bbcf86c61be3a830",
                 "shasum": ""
             },
             "require": {
@@ -2548,7 +2548,6 @@
             "suggest": {
                 "swow/swow": "Required to create swow components."
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2580,9 +2579,9 @@
             ],
             "support": {
                 "issues": "https://github.com/kydever/work-wx-user/issues",
-                "source": "https://github.com/kydever/work-wx-user/tree/v0.1.2"
+                "source": "https://github.com/kydever/work-wx-user/tree/v0.1.3"
             },
-            "time": "2022-07-06T04:15:14+00:00"
+            "time": "2022-07-13T07:15:10+00:00"
         },
         {
             "name": "laminas/laminas-mime",
@@ -9526,7 +9525,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "kydev/work-wx-user": 20,
         "swoole/ide-helper": 20
     },
     "prefer-stable": true,
