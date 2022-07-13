@@ -21,3 +21,4 @@ Router::post('/file/{id:\d+}', [App\Controller\FileController::class, 'save']);
 Router::get('/file/{id:\d+}', [App\Controller\FileController::class, 'info']);
 Router::post('/file/download-url', [App\Controller\FileController::class, 'downloadUrl']);
 Router::get('/file', [App\Controller\FileController::class, 'index']);
+Router::post('/file/create-dir', [App\Controller\FileController::class, 'createDir']);

@@ -43,6 +43,16 @@
 | tags    | Array   | ["Markdown", "文档"]            | 0为新增，>0为修改 |
 | file    | File    | 无                             | 需要备份的文件    |
 
+### 创建文件夹
+
+> POST /file/create-dir
+
+- 入参
+
+| 参数   | 类型     | 示例                  | 备注    |
+|------|--------|---------------------|-------|
+| path | String | /markdown/fs-server | 文件夹路径 |
+
 ### 文件列表
 
 > GET /file

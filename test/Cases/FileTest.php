@@ -58,6 +58,17 @@ class FileTest extends HttpTestCase
         $this->assertSame(0, $res['code']);
     }
 
+    public function testCreateDir()
+    {
+        $res = $this->json('/file/create-dir', [
+            'path' => '/技术部',
+        ], [
+            UserAuth::AUTH_TOKEN => UserAuthMockery::mockToken(1),
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
+
     public function testFileSave()
     {
         /** @var ResponseInterface $response */
