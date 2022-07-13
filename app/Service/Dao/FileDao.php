@@ -51,7 +51,8 @@ class FileDao extends Service
     public function findByDirname(string $dirname)
     {
         $query = File::query()
-            ->where('dirname', $dirname);
+            ->where('dirname', $dirname)
+            ->orderBy('is_dir', 'desc');
 
         return $this->factory->model->pagination($query, 0, 100);
     }
