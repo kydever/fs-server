@@ -25,9 +25,9 @@ class UploadService extends Service
     #[Value(key: 'file.domain')]
     protected string $domain;
 
-    public function move(?UploadedFile $file, ?string $extension): ?string
+    public function move(?UploadedFile $file, string $extension): ?string
     {
-        if (! $file || ! $extension) {
+        if (! $file) {
             return null;
         }
 

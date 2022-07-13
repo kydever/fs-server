@@ -35,7 +35,7 @@ class FileController extends Controller
         ]);
     }
 
-    public function save(int $id, FileSaveRequest $request)
+    public function saveFile(int $id, FileSaveRequest $request)
     {
         $file = $request->file('file');
         $userId = get_user_id();
@@ -46,7 +46,7 @@ class FileController extends Controller
             }
         }
 
-        $result = $this->service->save($id, $userId, $file, $input);
+        $result = $this->service->saveFile($id, $userId, $file, $input);
 
         return $this->response->success([
             'saved' => $result,

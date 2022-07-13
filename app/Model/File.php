@@ -66,20 +66,4 @@ class File extends Model
     {
         return $this->is_dir === Status::YES;
     }
-
-    /**
-     * 是否是合法操作.
-     */
-    public function isLegalOperation(bool $hasFile): bool
-    {
-        if ($this->isDir() && $hasFile) {
-            return false;
-        }
-
-        if (! $this->isDir() && ! $hasFile) {
-            return false;
-        }
-
-        return true;
-    }
 }

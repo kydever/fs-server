@@ -49,14 +49,11 @@ class FileService extends Service
      *     'tags' => ['设计稿', '文档'],
      * ]
      */
-    public function save(int $id, int $userId, ?UploadedFile $file = null, array $data = []): bool
+    public function saveFile(int $id, int $userId, ?UploadedFile $file = null, array $data = []): bool
     {
         if ($id > 0) {
             $model = $this->dao->first($id, true);
             ++$model->version;
-            if (! $model->isLegalOperation(! empty($file))) {
-                throw new BusinessException(ErrorCode::PARAM_INVALID);
-            }
         } else {
             $model = new File();
             $model->version = 1;
@@ -72,9 +69,11 @@ class FileService extends Service
         $title = $info['filename'];
         $dirname = $info['dirname'];
 
-        $this->dao->createDir($dirname, $userId);
+        if (empty($extension)) {
+            throw new BusinessException(ErrorCode::PARAM_INVALID, '暂不支持此类文件上传');
+        }
 
-        $target = $this->upload->move($file, $extension);
+        $this->dao->createDir($dirname, $userId);
 
         $model->user_id = $userId;
         $model->summary = $data['summary'] ?? '';
@@ -82,13 +81,11 @@ class FileService extends Service
         $model->path = $path;
         $model->title = $title;
         $model->dirname = $dirname;
-        $model->is_dir = Status::YES;
+        $model->is_dir = Status::NO;
 
-        if ($target) {
+        if ($target = $this->upload->move($file, $extension)) {
             $hash = hash_file('md5', $target);
             $url = $this->upload->upload($target, $extension);
-
-            $model->is_dir = Status::NO;
             $model->hash = $hash;
             $model->url = $url;
         }
