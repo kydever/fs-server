@@ -20,8 +20,8 @@ services:
     volumes:
       - redis-data:/data
     restart: "always"
-  hyperf:
-    image: "hyperf/biz-skeleton:latest"
+  fs-server:
+    image: "kydever/fs-server:latest"
     build:
       context: "."
     depends_on:
@@ -36,6 +36,17 @@ services:
     restart: "always"
     deploy:
       replicas: 1
+  fs-frontend:
+    image: "kydever/fs-frontend:latest"
+    build:
+      context: "./frontend"
+    ports:
+      - "10012:80"
+    depends_on:
+      - "fs-server"
+    networks:
+      - net
+    restart: "always"
 networks:
   net:
 volumes:

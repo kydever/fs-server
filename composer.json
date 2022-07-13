@@ -44,7 +44,7 @@
         "hyperf/server": "3.0.*",
         "hyperf/utils": "3.0.*",
         "hyperf/validation": "3.0.*",
-        "kydev/work-wx-user": "0.1.x-dev",
+        "kydev/work-wx-user": "^0.1",
         "limingxinleo/hyperf-utils": "^3.3",
         "overtrue/flysystem-qiniu": "^3.0"
     },

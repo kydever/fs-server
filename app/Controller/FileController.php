@@ -11,8 +11,11 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use App\Constants\ErrorCode;
+use App\Exception\BusinessException;
 use App\Request\DownloadUrlRequest;
 use App\Request\FileSaveRequest;
+use App\Service\Dao\FileDao;
 use App\Service\FileService;
 use Hyperf\Di\Annotation\Inject;
 
@@ -22,6 +25,9 @@ class FileController extends Controller
 {
     #[Inject]
     protected FileService $service;
+
+    #[Inject]
+    protected FileDao $dao;
 
     public function index()
     {
@@ -50,6 +56,20 @@ class FileController extends Controller
 
         return $this->response->success([
             'saved' => $result,
+        ]);
+    }
+
+    public function createDir()
+    {
+        $path = (string) $this->request->input('path');
+        if (! str_starts_with($path, '/')) {
+            throw new BusinessException(ErrorCode::PARAM_INVALID, '文件夹必须以斜线开头');
+        }
+
+        $this->dao->createDir($path, get_user_id());
+
+        return $this->response->success([
+            'saved' => true,
         ]);
     }
 

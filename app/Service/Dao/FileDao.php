@@ -72,13 +72,14 @@ class FileDao extends Service
 
         $pathArray = $this->findByPaths($paths)->columns('path')->toArray();
         foreach ($paths as $path) {
+            $path = rtrim($path);
             if (! in_array($path, $pathArray)) {
                 $info = pathinfo($path);
                 $model = new File();
                 $model->path = $path;
                 $model->user_id = $userId;
                 $model->is_dir = Status::YES;
-                $model->dirname = dirname($path);
+                $model->dirname = $info['dirname'];
                 $model->tags = [];
                 $model->hash = null;
                 $model->title = $info['filename'] ?? '';
