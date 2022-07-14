@@ -45,14 +45,12 @@ class UploadService extends Service
     public function upload(string $file, string $extension): string
     {
         $path = date('Y/m/d') . '/' . uniqid() . '.' . $extension;
-        go(function () use ($file, $path) {
-            $stream = fopen($file, 'r+');
-            try {
-                $this->filesystem->writeStream($path, $stream);
-            } finally {
-                fclose($stream);
-            }
-        });
+        $stream = fopen($file, 'r+');
+        try {
+            $this->filesystem->writeStream($path, $stream);
+        } finally {
+            fclose($stream);
+        }
 
         return trim($this->domain, '/') . '/' . $path;
     }
