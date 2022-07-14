@@ -25,7 +25,7 @@ class CreateFileTable extends Migration
             $table->unsignedBigInteger('user_id')->default(0)->comment('用户ID');
             $table->string('path', 256)->default('')->comment('文件路径');
             $table->string('hash', 64)->nullable()->comment('文件HASH');
-            $table->string('title', 32)->default('')->comment('文件名');
+            $table->string('title', 64)->default('')->comment('文件名');
             $table->string('summary', 256)->default('')->comment('文件描述');
             $table->json('tags')->comment('标签');
             $table->unsignedInteger('version')->default(0)->comment('文件版本号');
