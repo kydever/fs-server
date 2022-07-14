@@ -79,7 +79,7 @@ class FileService extends Service
         $model->summary = $data['summary'] ?? '';
         $model->tags = $data['tags'] ?? [];
         $model->path = $path;
-        $model->title = $title;
+        $model->title = $title . '.' . $extension;
         $model->dirname = $dirname;
         $model->is_dir = Status::NO;
 
