@@ -42,6 +42,16 @@ class FileService extends Service
         return [$count, $result];
     }
 
+    public function uploadFiles(array $files, string $dirname)
+    {
+        $dir = $this->dao->firstByPath($dirname);
+        if (! $dir?->isDir()) {
+            throw new BusinessException(ErrorCode::FILE_NOT_EXIST, '当前目录不存在');
+        }
+
+        foreach ($files as $file);
+    }
+
     /**
      * @param $data = [
      *     'path' => '/file/xxx.md',

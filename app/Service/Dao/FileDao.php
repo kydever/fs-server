@@ -35,6 +35,11 @@ class FileDao extends Service
         return File::query()->where('path', $path)->exists();
     }
 
+    public function firstByPath(string $path)
+    {
+        return File::query()->where('path', $path)->first();
+    }
+
     public function findByPaths(array $paths)
     {
         return File::query()->whereIn('path', $paths)->get();

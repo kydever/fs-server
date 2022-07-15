@@ -59,6 +59,18 @@ class FileController extends Controller
         ]);
     }
 
+    public function upload()
+    {
+        $files = (array) $this->request->file('files');
+        $dirname = (string) $this->request->input('dirname');
+
+        $result = $this->service->uploadFiles($files, $dirname);
+
+        return $this->response->success([
+            'saved' => $result,
+        ]);
+    }
+
     public function createDir()
     {
         $path = (string) $this->request->input('path');
