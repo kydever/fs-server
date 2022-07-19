@@ -42,14 +42,76 @@ class FileService extends Service
         return [$count, $result];
     }
 
-    public function uploadFiles(array $files, string $dirname)
+    /**
+     * @param $data = [
+     *     'dirname' => '/file',
+     *     'summary' => '',
+     *     'tags' => ['设计稿', '文档'],
+     * ]
+     */
+    public function uploadFiles(int $userId, array $files, array $data): bool
     {
-        $dir = $this->dao->firstByPath($dirname);
-        if (! $dir?->isDir()) {
-            throw new BusinessException(ErrorCode::FILE_NOT_EXIST, '当前目录不存在');
+        $dirname = $data['dirname'] ?? '';
+        if ($dirname !== '') {
+            $dir = $this->dao->firstByPath($dirname);
+            if (! $dir?->isDir()) {
+                throw new BusinessException(ErrorCode::FILE_NOT_EXIST, '当前目录不存在');
+            }
         }
 
-        foreach ($files as $file);
+        $this->dao->createDir($dirname, $userId);
+
+        $paths = [];
+        foreach ($files as $file) {
+            $fileName = $file->getClientFilename();
+            $paths[] = $dirname . '/' . $fileName;
+        }
+
+        $pathModels = $this->dao->findByPaths($paths);
+        $pathArray = [];
+        foreach ($pathModels as $pathModel) {
+            $pathArray[$pathModel->path] = $pathModel;
+        }
+
+        foreach ($files as $file) {
+            $fileName = $file->getClientFilename();
+            $path = $dirname . '/' . $fileName;
+
+            $info = pathinfo($path);
+            $extension = $info['extension'] ?? null;
+
+            if (empty($extension)) {
+                continue;
+            }
+
+            $model = $pathArray[$path] ?? null;
+            if (empty($model)) {
+                $model = new File();
+                $model->version = 1;
+            } else {
+                ++$model->version;
+            }
+
+            $target = $this->upload->move($file, $extension);
+            if (empty($target)) {
+                continue;
+            }
+            $hash = hash('md5', $target);
+            $url = $this->upload->upload($target, $extension);
+
+            $model->user_id = $userId;
+            $model->summary = $data['summary'] ?? '';
+            $model->tags = $data['tags'] ?? [];
+            $model->path = $path;
+            $model->title = $fileName;
+            $model->dirname = $dirname ?: '/';
+            $model->is_dir = Status::NO;
+            $model->hash = $hash;
+            $model->url = $url;
+
+            $model->save();
+        }
+        return true;
     }
 
     /**
@@ -94,7 +156,7 @@ class FileService extends Service
         $model->is_dir = Status::NO;
 
         if ($target = $this->upload->move($file, $extension)) {
-            $hash = hash_file('md5', $target);
+            $hash = hash('md5', $target);
             $url = $this->upload->upload($target, $extension);
             $model->hash = $hash;
             $model->url = $url;

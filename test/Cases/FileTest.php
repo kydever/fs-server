@@ -94,4 +94,34 @@ class FileTest extends HttpTestCase
         $res = Json::decode((string) $response->getBody());
         $this->assertSame(0, $res['code']);
     }
+
+    public function testFileUpload()
+    {
+        /** @var ResponseInterface $response */
+        $response = $this->client->request('POST', '/file/upload', [
+            RequestOptions::HEADERS => [
+                UserAuth::AUTH_TOKEN => UserAuthMockery::mockToken(1),
+            ],
+            RequestOptions::FORM_PARAMS => [
+                'dirname' => '',
+                'tags' => ['1', '2'],
+                'summary' => '测试',
+            ],
+            RequestOptions::MULTIPART => [
+                [
+                    'name' => 'files0',
+                    'contents' => fopen(BASE_PATH . '/README.md', 'r'),
+                    'filename' => 'README.md',
+                ],
+                [
+                    'name' => 'files1',
+                    'contents' => fopen(BASE_PATH . '/phpunit.xml', 'r'),
+                    'filename' => 'phpunit.xml',
+                ],
+            ],
+        ]);
+
+        $res = Json::decode((string) $response->getBody());
+        $this->assertSame(0, $res['code']);
+    }
 }

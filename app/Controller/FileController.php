@@ -61,10 +61,16 @@ class FileController extends Controller
 
     public function upload()
     {
-        $files = (array) $this->request->file('files');
-        $dirname = (string) $this->request->input('dirname');
+        $files = $this->request->getUploadedFiles();
+        $input = $this->request->all();
 
-        $result = $this->service->uploadFiles($files, $dirname);
+        if (isset($input['tags'])) {
+            if (! is_array($input['tags'])) {
+                $input['tags'] = explode(',', (string) $input['tags']);
+            }
+        }
+        $userId = get_user_id();
+        $result = $this->service->uploadFiles($userId, $files, $input);
 
         return $this->response->success([
             'saved' => $result,
