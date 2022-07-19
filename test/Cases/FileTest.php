@@ -124,4 +124,25 @@ class FileTest extends HttpTestCase
         $res = Json::decode((string) $response->getBody());
         $this->assertSame(0, $res['code']);
     }
+
+    public function testGetTree()
+    {
+        $res = $this->get('/file/tree', [], [
+            UserAuth::AUTH_TOKEN => UserAuthMockery::mockToken(1),
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
+
+    public function testDeleteFile()
+    {
+        $res = $this->json('/file/delete', [
+            'ids' => [
+            ],
+        ], [
+            UserAuth::AUTH_TOKEN => UserAuthMockery::mockToken(1),
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
 }

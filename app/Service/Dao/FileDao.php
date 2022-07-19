@@ -15,6 +15,7 @@ use App\Constants\ErrorCode;
 use App\Constants\Status;
 use App\Exception\BusinessException;
 use App\Model\File;
+use App\Service\FileService;
 use Han\Utils\Service;
 use Hyperf\Database\Model\Collection;
 
@@ -57,6 +58,7 @@ class FileDao extends Service
     {
         $query = File::query()
             ->where('dirname', $dirname)
+            ->where('is_deleted', Status::NO)
             ->orderBy('is_dir', 'desc');
 
         return $this->factory->model->pagination($query, 0, 100);
@@ -89,8 +91,11 @@ class FileDao extends Service
                 $model->tags = [];
                 $model->hash = null;
                 $model->title = $info['filename'] ?? '';
+                $model->is_deleted = Status::NO;
                 $model->save();
             }
         }
+
+        di(FileService::class)->putTreeCache();
     }
 }

@@ -28,6 +28,7 @@ use Hyperf\Database\Model\Events\Saved;
  * @property string $url 云服务URL
  * @property int $is_dir 是否为文件夹
  * @property string $dirname 文件夹名
+ * @property int $is_deleted 是否删除 1是 0否
  * @property \Carbon\Carbon $created_at 创建时间
  * @property \Carbon\Carbon $updated_at 更新时间
  */
@@ -41,12 +42,12 @@ class File extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected array $fillable = ['id', 'user_id', 'path', 'hash', 'title', 'summary', 'tags', 'version', 'url', 'is_dir', 'dirname', 'created_at', 'updated_at'];
+    protected array $fillable = ['id', 'user_id', 'path', 'hash', 'title', 'summary', 'tags', 'version', 'url', 'is_dir', 'dirname', 'is_deleted', 'created_at', 'updated_at'];
 
     /**
      * The attributes that should be cast to native types.
      */
-    protected array $casts = ['id' => 'integer', 'tags' => 'json', 'version' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime', 'user_id' => 'integer', 'is_dir' => 'integer'];
+    protected array $casts = ['id' => 'integer', 'tags' => 'json', 'version' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime', 'user_id' => 'integer', 'is_dir' => 'integer', 'is_deleted' => 'integer'];
 
     public function created(Created $event)
     {

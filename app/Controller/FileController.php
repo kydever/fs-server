@@ -110,4 +110,23 @@ class FileController extends Controller
             'list' => $result,
         ]);
     }
+
+    public function getTree()
+    {
+        $result = $this->service->getTreeCache();
+
+        return $this->response->success($result);
+    }
+
+    public function delete()
+    {
+        $ids = (array) $this->request->input('ids');
+
+        get_user_id();
+        $result = $this->service->delete($ids);
+
+        return $this->response->success([
+            'deleted' => $result,
+        ]);
+    }
 }

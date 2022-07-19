@@ -19,6 +19,9 @@ use App\Service\Dao\FileDao;
 use App\Service\Formatter\FileFormatter;
 use App\Service\SubService\UploadService;
 use Han\Utils\Service;
+use Hyperf\Cache\Annotation\Cacheable;
+use Hyperf\Cache\Annotation\CachePut;
+use Hyperf\DbConnection\Db;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpMessage\Upload\UploadedFile;
 
@@ -106,6 +109,7 @@ class FileService extends Service
             $model->title = $fileName;
             $model->dirname = $dirname ?: '/';
             $model->is_dir = Status::NO;
+            $model->is_deleted = Status::NO;
             $model->hash = $hash;
             $model->url = $url;
 
@@ -154,6 +158,7 @@ class FileService extends Service
         $model->title = $title . '.' . $extension;
         $model->dirname = $dirname;
         $model->is_dir = Status::NO;
+        $model->is_deleted = Status::NO;
 
         if ($target = $this->upload->move($file, $extension)) {
             $hash = hash('md5', $target);
@@ -181,5 +186,66 @@ class FileService extends Service
         $models = $this->dao->findMany($ids);
 
         return $this->formatter->formatDownloadUrl($models);
+    }
+
+    #[Cacheable(prefix: 'tree:all', ttl: 864000)]
+    public function getTreeCache(): array
+    {
+        return $this->getTree();
+    }
+
+    #[CachePut(prefix: 'tree:all', ttl: 864000)]
+    public function putTreeCache(): array
+    {
+        return $this->getTree();
+    }
+
+    public function getTree(): array
+    {
+        $result = Db::select(
+            'select title, path, dirname from file where is_dir = ? and is_deleted = ?',
+            [Status::YES, Status::NO]
+        );
+
+        $data = [];
+        foreach ($result as $datum) {
+            $datum->children = [];
+            $data[$datum->path] = $datum;
+        }
+
+        foreach ($data as $datum) {
+            if ($datum->dirname && ($parent = $data[$datum->dirname] ?? null)) {
+                $parent->children[] = $datum;
+            }
+        }
+
+        foreach ($data as $key => $datum) {
+            if ($datum->dirname != '/') {
+                unset($data[$key]);
+            }
+        }
+
+        return [
+            'title' => '根目录',
+            'path' => '/',
+            'dirname' => '',
+            'children' => array_values($data),
+        ];
+    }
+
+    public function delete(array $ids): bool
+    {
+        if (empty($ids)) {
+            return true;
+        }
+        $models = $this->dao->findMany($ids);
+
+        /** @var File $model */
+        foreach ($models as $model) {
+            $model->is_deleted = Status::YES;
+            $model->save();
+        }
+
+        $this->putTreeCache();
     }
 }

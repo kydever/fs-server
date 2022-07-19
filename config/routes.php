@@ -23,3 +23,5 @@ Router::post('/file/download-url', [App\Controller\FileController::class, 'downl
 Router::get('/file', [App\Controller\FileController::class, 'index']);
 Router::post('/file/create-dir', [App\Controller\FileController::class, 'createDir']);
 Router::post('/file/upload', [App\Controller\FileController::class, 'upload']);
+Router::get('/file/tree', [App\Controller\FileController::class, 'getTree']);
+Router::post('/file/delete', [App\Controller\FileController::class, 'delete']);
