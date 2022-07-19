@@ -247,5 +247,7 @@ class FileService extends Service
         }
 
         $this->putTreeCache();
+
+        return true;
     }
 }
