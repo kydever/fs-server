@@ -59,7 +59,7 @@ class FileDao extends Service
         $query = File::query()
             ->where('dirname', $dirname)
             ->where('is_deleted', Status::NO)
-            ->orderBy('is_dir', 'desc');
+            ->where('is_dir', Status::NO);
 
         return $this->factory->model->pagination($query, 0, 100);
     }

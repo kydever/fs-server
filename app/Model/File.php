@@ -67,4 +67,9 @@ class File extends Model
     {
         return $this->is_dir === Status::YES;
     }
+
+    public function isDelete(): bool
+    {
+        return $this->is_deleted === Status::YES;
+    }
 }

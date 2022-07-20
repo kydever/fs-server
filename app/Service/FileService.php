@@ -127,17 +127,21 @@ class FileService extends Service
      */
     public function saveFile(int $id, int $userId, ?UploadedFile $file = null, array $data = []): bool
     {
+        $path = $data['path'];
+        $toModel = $this->dao->firstByPath($path);
+
+        if ($toModel && ! $toModel->isDelete() && $toModel->id != $id) {
+            throw new BusinessException(ErrorCode::PATH_IS_EXIST);
+        }
+
         if ($id > 0) {
             $model = $this->dao->first($id, true);
             ++$model->version;
         } else {
-            $model = new File();
+            $model = $toModel ?: new File();
             $model->version = 1;
-        }
-
-        $path = $data['path'];
-        if ($model->path != $path && $this->dao->existsByPath($path)) {
-            throw new BusinessException(ErrorCode::PATH_IS_EXIST);
+            $model->hash = '';
+            $model->url = '';
         }
 
         $info = pathinfo($path);
@@ -225,12 +229,7 @@ class FileService extends Service
             }
         }
 
-        return [
-            'title' => '根目录',
-            'path' => '/',
-            'dirname' => '',
-            'children' => array_values($data),
-        ];
+        return array_values($data);
     }
 
     public function delete(array $ids): bool
