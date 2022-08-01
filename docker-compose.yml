@@ -38,7 +38,7 @@ services:
       - net
     restart: "always"
     deploy:
-      replicas: 1
+      replicas: 8
   fs-frontend:
     image: "kydever/fs-frontend:latest"
     build:
