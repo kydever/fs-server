@@ -12,6 +12,7 @@ jobs:
         php-version: [ '8.1' ]
         swoole-version: [ 'v5.0.0', 'master' ]
       max-parallel: 5
+      fail-fast: false
     env:
       SW_VERSION: ${{ matrix.swoole-version }}
       PHP_VERSION: ${{ matrix.php-version }}
