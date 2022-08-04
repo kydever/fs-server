@@ -25,7 +25,7 @@ RUN set -ex \
     && php -m \
     && php --ri swoole \
     #  ---------- some config ----------
-    && cd /etc/php81 \
+    && cd /etc/php* \
     # - config PHP
     && { \
         echo "upload_max_filesize=128M"; \
