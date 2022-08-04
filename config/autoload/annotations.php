@@ -20,6 +20,7 @@ return [
         'class_map' => [
             Hyperf\Utils\Coroutine::class => BASE_PATH . '/app/Kernel/ClassMap/Coroutine.php',
             Hyperf\Di\Resolver\ResolverDispatcher::class => BASE_PATH . '/app/Kernel/ClassMap/ResolverDispatcher.php',
+            Qiniu\Http\Header::class => BASE_PATH . '/app/Kernel/ClassMap/Header.php',
         ],
     ],
 ];
