@@ -192,13 +192,13 @@ class FileService extends Service
         return $this->formatter->formatDownloadUrl($models);
     }
 
-    #[Cacheable(prefix: 'tree:all', ttl: 864000)]
+    #[Cacheable(prefix: 'tree:all:v1', ttl: 864000)]
     public function getTreeCache(): array
     {
         return $this->getTree();
     }
 
-    #[CachePut(prefix: 'tree:all', ttl: 864000)]
+    #[CachePut(prefix: 'tree:all:v1', ttl: 864000)]
     public function putTreeCache(): array
     {
         return $this->getTree();
@@ -207,7 +207,7 @@ class FileService extends Service
     public function getTree(): array
     {
         $result = Db::select(
-            'select title, path, dirname from file where is_dir = ? and is_deleted = ?',
+            'select id, title, path, dirname from file where is_dir = ? and is_deleted = ?',
             [Status::YES, Status::NO]
         );
 
